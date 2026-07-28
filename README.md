@@ -134,11 +134,31 @@ npm run build
 
 ---
 
+## Releases
+
+Pushing a version tag (`v1.0.0`, `v1.1.0-rc.1`, …) triggers the **Release** workflow (`.github/workflows/release.yml`), which:
+
+1. Builds the production bundle (`npm run build`).
+2. Zips `dist/` into `qrcode-tools-<tag>.zip`.
+3. Generates a SHA256 checksum (`checksums-sha256.txt`).
+4. Creates a GitHub Release with the zip + checksum attached, and auto-generated notes (commit log since the previous tag). Pre-release tags (containing `-`) are marked as pre-release.
+
+```bash
+# create and push a tag to cut a release
+git tag v1.1.0
+git push origin v1.1.0
+```
+
+The resulting artifacts appear under **Releases** on the GitHub repo page. See [CHANGELOG.md](./CHANGELOG.md) for version history.
+
+---
+
 ## Usage tips
 
 - **Batch generate from Excel**: put one content entry per row (a column named `Content` / `Text` / `URL` is preferred, otherwise the first column is used). Import the `.xlsx` and click Generate.
 - **Paste to decode**: take a screenshot (`Win+Shift+S` / `Cmd+Shift+4`), then `Ctrl+V` / `Cmd+V` on the Decode tab — the QR inside the image is read immediately.
-- **Error-correction level**: higher levels (Q/H) tolerate more damage but produce denser codes. `M` is a good default.
+- **Camera scan**: requires HTTPS or `localhost` (browser security). On phones, the back camera is preferred.
+- **Error-correction level**: higher levels (Q/H) tolerate more damage but produce denser codes. `M` is a good default; a logo embed forces `H`.
 
 ---
 

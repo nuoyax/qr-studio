@@ -1,7 +1,7 @@
 {
   "name": "qrcode-tools",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "description": "QR code generator & decoder — batch generate, batch decode (incl. paste image), export to XLSX. React + TypeScript + Vite.",
   "scripts": {

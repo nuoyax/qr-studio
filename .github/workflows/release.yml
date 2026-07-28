@@ -1,0 +1,97 @@
+name: Release
+
+# Builds the production bundle and attaches it as a GitHub Release asset
+# whenever a version tag (v1.0.0, v1.0.0-rc.1, …) is pushed.
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to release (must already exist)"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Full history so we can generate release notes / changelog.
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build production bundle
+        run: npm run build
+
+      - name: Resolve tag
+        id: tag
+        run: |
+          if [ -n "${{ inputs.tag }}" ]; then
+            echo "name=${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "name=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Package dist into zip
+        run: |
+          mkdir -p release
+          zip -r "release/qrcode-tools-${{ steps.tag.outputs.name }}.zip" dist \
+            -x "*.DS_Store"
+
+      - name: Generate SHA256 checksum
+        working-directory: release
+        run: |
+          sha256sum *.zip > checksums-sha256.txt
+          cat checksums-sha256.txt
+
+      - name: Build release notes
+        id: notes
+        run: |
+          {
+            echo "body<<EOF"
+            echo "## QR Code Tools \`${{ steps.tag.outputs.name }}\`"
+            echo ""
+            echo "### Artifacts"
+            echo ""
+            echo "- \`qrcode-tools-${{ steps.tag.outputs.name }}.zip\` — production build (\`dist/\`), ready to deploy to any static host."
+            echo "- \`checksums-sha256.txt\` — SHA256 checksums for the zip."
+            echo ""
+            echo "### Deploy"
+            echo ""
+            echo "Unzip and serve the contents with any static host (GitHub Pages, Netlify, Vercel, Nginx, …)."
+            echo ""
+            echo "### Changes since last tag"
+            echo ""
+            echo '```'
+            git log --pretty=format:"- %s" "$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || git rev-list --max-parents=0 HEAD)..HEAD" 2>/dev/null || true
+            echo ""
+            echo '```'
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.name }}
+          name: ${{ steps.tag.outputs.name }}
+          body: ${{ steps.notes.outputs.body }}
+          draft: false
+          prerelease: ${{ contains(steps.tag.outputs.name, '-') }}
+          files: |
+            release/qrcode-tools-*.zip
+            release/checksums-sha256.txt
+            dist

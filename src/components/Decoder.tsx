@@ -366,26 +366,26 @@ export function Decoder({ lang, onDecoded, restore, restoreNonce }: Props) {
               <tbody>
                 {rows.map((r, i) => (
                   <tr key={r.id} className={r.ok ? "" : "row-error"}>
-                    <td className="col-idx">{i + 1}</td>
-                    <td className="col-img">
+                    <td className="col-idx" data-label={t.index}>{i + 1}</td>
+                    <td className="col-img" data-label={t.preview}>
                       <img src={r.thumbUrl} alt="src" className="thumb" />
                     </td>
-                    <td className="cell-fname" title={r.fileName}>{r.fileName}</td>
-                    <td className="cell-decoded">
+                    <td className="cell-fname" data-label={t.fileName} title={r.fileName}>{r.fileName}</td>
+                    <td className="cell-decoded" data-label={t.colDecoded}>
                       {r.ok ? (
                         <span className="decoded-inline">{r.value}</span>
                       ) : (
                         <span className="muted">{r.value}</span>
                       )}
                     </td>
-                    <td className="col-status">
+                    <td className="col-status" data-label={t.status}>
                       {r.ok ? (
                         <span className="badge ok">{t.statusDone}</span>
                       ) : (
                         <span className="badge err">{t.statusError}</span>
                       )}
                     </td>
-                    <td className="col-actions">
+                    <td className="col-actions" data-label={t.actions}>
                       {r.ok && (
                         <>
                           <button className="link" onClick={() => copyValue(r.value)}>

@@ -129,11 +129,31 @@ npm run build
 
 ---
 
+## 发布 Release
+
+推送版本标签（`v1.0.0`、`v1.1.0-rc.1`…）会触发 **Release** 工作流（`.github/workflows/release.yml`），它会：
+
+1. 构建生产产物（`npm run build`）。
+2. 将 `dist/` 打包为 `qrcode-tools-<tag>.zip`。
+3. 生成 SHA256 校验文件（`checksums-sha256.txt`）。
+4. 创建 GitHub Release 并附上 zip 与校验文件，自动生成发布说明（自上个标签以来的提交日志）。含 `-` 的标签会被标记为预发布。
+
+```bash
+# 创建并推送标签以发布
+git tag v1.1.0
+git push origin v1.1.0
+```
+
+产物会出现在 GitHub 仓库的 **Releases** 页面。版本历史见 [CHANGELOG.md](./CHANGELOG.md)。
+
+---
+
 ## 使用技巧
 
 - **从 Excel 批量生成**：每行一个内容条目（优先使用名为 `Content` / `Text` / `URL` 的列，否则取第一列）。导入 `.xlsx` 后点击生成。
 - **粘贴解码**：截图（`Win+Shift+S` / `Cmd+Shift+4`），在「解码」页按 `Ctrl+V` / `Cmd+V` — 图片中的二维码会被立即识别。
-- **纠错等级**：等级越高（Q/H）容错越强，但二维码越密。默认 `M` 即可。
+- **摄像头扫码**：需 HTTPS 或 `localhost`（浏览器安全限制），手机端默认优先使用后置摄像头。
+- **纠错等级**：等级越高（Q/H）容错越强，但二维码越密。默认 `M` 即可；嵌入 Logo 时会强制使用 `H`。
 
 ---
 

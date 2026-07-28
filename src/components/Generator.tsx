@@ -590,8 +590,8 @@ export function Generator({ lang, onGenerated, restore, restoreNonce }: Props) {
             <tbody>
               {rows.map((r, i) => (
                 <tr key={r.id} className={r.status === "error" ? "row-error" : ""}>
-                  <td className="col-idx">{i + 1}</td>
-                  <td>
+                  <td className="col-idx" data-label={t.index}>{i + 1}</td>
+                  <td data-label={t.colContent}>
                     <input
                       className="cell-input"
                       value={r.text}
@@ -600,14 +600,14 @@ export function Generator({ lang, onGenerated, restore, restoreNonce }: Props) {
                       disabled={batchBusy}
                     />
                   </td>
-                  <td className="col-img">
+                  <td className="col-img" data-label={t.colImage}>
                     {r.dataUrl ? (
                       <img src={r.dataUrl} alt="QR" className="thumb" />
                     ) : (
                       <span className="muted">—</span>
                     )}
                   </td>
-                  <td className="col-status">
+                  <td className="col-status" data-label={t.colStatus}>
                     {r.status === "ok" && (
                       <span className="badge ok">{t.statusDone}</span>
                     )}
@@ -618,7 +618,7 @@ export function Generator({ lang, onGenerated, restore, restoreNonce }: Props) {
                     )}
                     {r.status === "pending" && <span className="muted">…</span>}
                   </td>
-                  <td className="col-actions">
+                  <td className="col-actions" data-label={t.actions}>
                     {r.dataUrl && (
                       <button
                         className="link"
