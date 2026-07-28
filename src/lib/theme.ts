@@ -1,6 +1,6 @@
 export type Theme = "light" | "dark";
 
-const KEY = "qrcode-tools.theme";
+const KEY = "qr-studio.theme";
 
 export function getStoredTheme(): Theme {
   if (typeof localStorage === "undefined") return "light";

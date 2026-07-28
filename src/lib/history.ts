@@ -1,4 +1,4 @@
-const KEY = "qrcode-tools.history";
+const KEY = "qr-studio.history";
 const MAX = 50;
 
 export type HistoryKind = "gen" | "dec";

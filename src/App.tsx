@@ -15,7 +15,7 @@ import type { HistoryItem } from "./lib/history";
 
 type Tab = "generate" | "decode";
 
-const LANG_KEY = "qrcode-tools.lang";
+const LANG_KEY = "qr-studio.lang";
 
 export default function App() {
   const [tab, setTab] = useState<Tab>("generate");
@@ -79,7 +79,7 @@ export default function App() {
           </button>
           <a
             className="btn ghost github-btn"
-            href="https://github.com/halo/qrcode-tools"
+            href="https://github.com/halo/qr-studio"
             target="_blank"
             rel="noreferrer noopener"
           >

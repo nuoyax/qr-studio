@@ -82,7 +82,7 @@ npm run preview
 ## 项目结构
 
 ```
-qrcode-tools/
+qr-studio/
 ├── index.html
 ├── vite.config.ts
 ├── tsconfig*.json
@@ -116,7 +116,7 @@ qrcode-tools/
 1. 将仓库推送到 GitHub。
 2. 进入 **Settings → Pages → Build and deployment → Source = GitHub Actions**。
 3. 推送到 `main`（或手动触发工作流）。站点将发布在：
-   `https://<你的用户名>.github.io/qrcode-tools/`
+   `https://<你的用户名>.github.io/qr-studio/`
 
 Vite 配置使用 `base: "./"`，构建产物可在任意项目子路径下工作。
 
@@ -134,7 +134,7 @@ npm run build
 推送版本标签（`v1.0.0`、`v1.1.0-rc.1`…）会触发 **Release** 工作流（`.github/workflows/release.yml`），它会：
 
 1. 构建生产产物（`npm run build`）。
-2. 将 `dist/` 打包为 `qrcode-tools-<tag>.zip`。
+2. 将 `dist/` 打包为 `qr-studio-<tag>.zip`。
 3. 生成 SHA256 校验文件（`checksums-sha256.txt`）。
 4. 创建 GitHub Release 并附上 zip 与校验文件，自动生成发布说明（自上个标签以来的提交日志）。含 `-` 的标签会被标记为预发布。
 

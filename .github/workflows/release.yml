@@ -49,7 +49,7 @@ jobs:
       - name: Package dist into zip
         run: |
           mkdir -p release
-          zip -r "release/qrcode-tools-${{ steps.tag.outputs.name }}.zip" dist \
+          zip -r "release/qr-studio-${{ steps.tag.outputs.name }}.zip" dist \
             -x "*.DS_Store"
 
       - name: Generate SHA256 checksum
@@ -67,7 +67,7 @@ jobs:
             echo ""
             echo "### Artifacts"
             echo ""
-            echo "- \`qrcode-tools-${{ steps.tag.outputs.name }}.zip\` — production build (\`dist/\`), ready to deploy to any static host."
+            echo "- \`qr-studio-${{ steps.tag.outputs.name }}.zip\` — production build (\`dist/\`), ready to deploy to any static host."
             echo "- \`checksums-sha256.txt\` — SHA256 checksums for the zip."
             echo ""
             echo "### Deploy"
@@ -92,6 +92,6 @@ jobs:
           draft: false
           prerelease: ${{ contains(steps.tag.outputs.name, '-') }}
           files: |
-            release/qrcode-tools-*.zip
+            release/qr-studio-*.zip
             release/checksums-sha256.txt
             dist

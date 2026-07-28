@@ -31,6 +31,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **GitHub Pages** deployment via GitHub Actions; relative `base` for project subpaths.
 - 100% client-side — no data leaves the browser.
 
-[Unreleased]: https://github.com/halo/qrcode-tools/compare/v1.1.0...HEAD
-[1.1.0]: https://github.com/halo/qrcode-tools/releases/tag/v1.1.0
-[1.0.0]: https://github.com/halo/qrcode-tools/releases/tag/v1.0.0
+[Unreleased]: https://github.com/halo/qr-studio/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/halo/qr-studio/releases/tag/v1.1.0
+[1.0.0]: https://github.com/halo/qr-studio/releases/tag/v1.0.0

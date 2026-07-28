@@ -82,7 +82,7 @@ The production output is written to `dist/`.
 ## Project structure
 
 ```
-qrcode-tools/
+qr-studio/
 ├── index.html
 ├── vite.config.ts
 ├── tsconfig*.json
@@ -121,7 +121,7 @@ This repo includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) th
 1. Push the repo to GitHub.
 2. Go to **Settings → Pages → Build and deployment → Source = GitHub Actions**.
 3. Push to `main` (or trigger the workflow manually). The site is published at:
-   `https://<your-username>.github.io/qrcode-tools/`
+   `https://<your-username>.github.io/qr-studio/`
 
 The Vite config uses `base: "./"` so the built assets work under any project subpath.
 
@@ -139,7 +139,7 @@ npm run build
 Pushing a version tag (`v1.0.0`, `v1.1.0-rc.1`, …) triggers the **Release** workflow (`.github/workflows/release.yml`), which:
 
 1. Builds the production bundle (`npm run build`).
-2. Zips `dist/` into `qrcode-tools-<tag>.zip`.
+2. Zips `dist/` into `qr-studio-<tag>.zip`.
 3. Generates a SHA256 checksum (`checksums-sha256.txt`).
 4. Creates a GitHub Release with the zip + checksum attached, and auto-generated notes (commit log since the previous tag). Pre-release tags (containing `-`) are marked as pre-release.
 
