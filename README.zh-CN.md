@@ -6,6 +6,18 @@
 
 ---
 
+## 截图
+
+| | |
+| :--: | :--: |
+| **生成 — 单个（浅色）**<br>![生成单个](docs/screenshots/generate-single.png) | **生成 — 深色模式**<br>![生成深色](docs/screenshots/generate-dark.png) |
+| **Wi-Fi 模板**<br>![Wi-Fi](docs/screenshots/generate-wifi.png) | **批量生成**<br>![批量](docs/screenshots/generate-batch.png) |
+| **解码**<br>![解码](docs/screenshots/decode.png) | **中文界面**<br>![中文](docs/screenshots/generate-zh.png) |
+
+> 本地重新生成：先 `npm run preview`，再 `node docs/shots.cjs`（需本地 Chrome + `puppeteer-core`）。
+
+---
+
 ## 功能
 
 ### 生成

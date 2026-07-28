@@ -6,6 +6,18 @@
 
 ---
 
+## Screenshots
+
+| | |
+| :--: | :--: |
+| **Generate — single (light)**<br>![Generate single](docs/screenshots/generate-single.png) | **Generate — dark mode**<br>![Generate dark](docs/screenshots/generate-dark.png) |
+| **Wi-Fi template**<br>![Wi-Fi](docs/screenshots/generate-wifi.png) | **Batch generate**<br>![Batch](docs/screenshots/generate-batch.png) |
+| **Decode**<br>![Decode](docs/screenshots/decode.png) | **中文界面**<br>![Chinese](docs/screenshots/generate-zh.png) |
+
+> Regenerate locally: `npm run preview`, then `node docs/shots.cjs` (needs a local Chrome + `puppeteer-core`).
+
+---
+
 ## Features
 
 ### Generate

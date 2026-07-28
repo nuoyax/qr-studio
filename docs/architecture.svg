@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 760" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6f8fb"/>
+      <stop offset="1" stop-color="#eef2f7"/>
+    </linearGradient>
+    <linearGradient id="genGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e0f2fe"/>
+      <stop offset="1" stop-color="#bae6fd"/>
+    </linearGradient>
+    <linearGradient id="decGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dcfce7"/>
+      <stop offset="1" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="hubGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fef3c7"/>
+      <stop offset="1" stop-color="#fde68a"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0ea5e9"/>
+    </marker>
+  </defs>
+
+  <rect width="1040" height="760" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="520" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#0f172a">qr-studio — Architecture</text>
+  <text x="520" y="60" text-anchor="middle" font-size="13" fill="#64748b">100% client-side · React + TypeScript + Vite · no server, no upload</text>
+
+  <!-- ============ Layer 1: User ============ -->
+  <g>
+    <rect x="430" y="86" width="180" height="40" rx="20" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="520" y="111" text-anchor="middle" font-size="14" font-weight="600" fill="#0f172a">👤 User (browser)</text>
+  </g>
+  <line x1="520" y1="126" x2="520" y2="148" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ Layer 2: App shell ============ -->
+  <g>
+    <rect x="40" y="150" width="960" height="96" rx="14" fill="#fff" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="60" y="172" font-size="11" font-weight="700" fill="#0ea5e9" letter-spacing="0.5">APP SHELL  ·  src/App.tsx</text>
+
+    <rect x="60" y="182" width="200" height="52" rx="10" fill="url(#hubGrad)" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="160" y="206" text-anchor="middle" font-size="13" font-weight="600" fill="#78350f">Tabs (Generate / Decode)</text>
+    <text x="160" y="222" text-anchor="middle" font-size="10.5" fill="#92400e">routing by state</text>
+
+    <rect x="280" y="182" width="190" height="52" rx="10" fill="url(#hubGrad)" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="375" y="206" text-anchor="middle" font-size="13" font-weight="600" fill="#78350f">i18n toggle (EN/中)</text>
+    <text x="375" y="222" text-anchor="middle" font-size="10.5" fill="#92400e">localStorage: lang</text>
+
+    <rect x="490" y="182" width="190" height="52" rx="10" fill="url(#hubGrad)" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="585" y="206" text-anchor="middle" font-size="13" font-weight="600" fill="#78350f">Theme toggle (light/dark)</text>
+    <text x="585" y="222" text-anchor="middle" font-size="10.5" fill="#92400e">localStorage: theme · OS pref</text>
+
+    <rect x="700" y="182" width="280" height="52" rx="10" fill="url(#hubGrad)" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="840" y="206" text-anchor="middle" font-size="13" font-weight="600" fill="#78350f">HistoryPanel + restore</text>
+    <text x="840" y="222" text-anchor="middle" font-size="10.5" fill="#92400e">recent gen/dec · CSV/JSON export</text>
+  </g>
+
+  <line x1="300" y1="246" x2="300" y2="272" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="740" y1="246" x2="740" y2="272" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ Layer 3: Feature components ============ -->
+  <g>
+    <!-- Generate column -->
+    <rect x="40" y="274" width="470" height="200" rx="14" fill="#fff" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="60" y="296" font-size="11" font-weight="700" fill="#0ea5e9" letter-spacing="0.5">GENERATE  ·  components/Generator.tsx</text>
+
+    <rect x="60" y="308" width="200" height="68" rx="10" fill="url(#genGrad)" stroke="#0284c7" stroke-width="1.2"/>
+    <text x="160" y="332" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0c4a6e">Single QR + templates</text>
+    <text x="160" y="349" text-anchor="middle" font-size="10" fill="#075985">text/url/wifi/vcard/</text>
+    <text x="160" y="362" text-anchor="middle" font-size="10" fill="#075985">sms/email/tel/geo</text>
+
+    <rect x="290" y="308" width="200" height="68" rx="10" fill="url(#genGrad)" stroke="#0284c7" stroke-width="1.2"/>
+    <text x="390" y="332" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0c4a6e">Batch generate</text>
+    <text x="390" y="349" text-anchor="middle" font-size="10" fill="#075985">paste / XLSX / TXT / CSV</text>
+    <text x="390" y="362" text-anchor="middle" font-size="10" fill="#075985">→ PNG · ZIP · XLSX</text>
+
+    <rect x="60" y="386" width="430" height="76" rx="10" fill="#fff" stroke="#0284c7" stroke-width="1.2"/>
+    <text x="275" y="408" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0c4a6e">Stylized QR (optional)</text>
+    <text x="275" y="426" text-anchor="middle" font-size="10.5" fill="#075985">dot style · finder-eye color · centered logo</text>
+    <text x="275" y="442" text-anchor="middle" font-size="10.5" fill="#075985">auto EC→H when logo embedded</text>
+    <text x="275" y="456" text-anchor="middle" font-size="10" fill="#64748b" font-style="italic">SVG export (plain text only)</text>
+  </g>
+
+  <g>
+    <!-- Decode column -->
+    <rect x="530" y="274" width="470" height="200" rx="14" fill="#fff" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="550" y="296" font-size="11" font-weight="700" fill="#16a34a" letter-spacing="0.5">DECODE  ·  components/Decoder.tsx</text>
+
+    <rect x="550" y="308" width="200" height="68" rx="10" fill="url(#decGrad)" stroke="#15803d" stroke-width="1.2"/>
+    <text x="650" y="332" text-anchor="middle" font-size="12.5" font-weight="600" fill="#14532d">Single image + paste</text>
+    <text x="650" y="349" text-anchor="middle" font-size="10" fill="#166534">pick file · Ctrl+V clipboard</text>
+    <text x="650" y="362" text-anchor="middle" font-size="10" fill="#166534">→ decode value</text>
+
+    <rect x="780" y="308" width="200" height="68" rx="10" fill="url(#decGrad)" stroke="#15803d" stroke-width="1.2"/>
+    <text x="880" y="332" text-anchor="middle" font-size="12.5" font-weight="600" fill="#14532d">Batch decode</text>
+    <text x="880" y="349" text-anchor="middle" font-size="10" fill="#166534">drag-drop / multi-select</text>
+    <text x="880" y="362" text-anchor="middle" font-size="10" fill="#166534">→ table · XLSX export</text>
+
+    <rect x="550" y="386" width="430" height="76" rx="10" fill="#fff" stroke="#15803d" stroke-width="1.2"/>
+    <text x="765" y="408" text-anchor="middle" font-size="12.5" font-weight="600" fill="#14532d">Camera live scan</text>
+    <text x="765" y="426" text-anchor="middle" font-size="10.5" fill="#166534">getUserMedia · rAF loop · downscale 640px</text>
+    <text x="765" y="442" text-anchor="middle" font-size="10.5" fill="#166534">front/back switch · auto-stop on hit</text>
+    <text x="765" y="456" text-anchor="middle" font-size="10" fill="#64748b" font-style="italic">requires HTTPS or localhost</text>
+  </g>
+
+  <line x1="275" y1="474" x2="275" y2="500" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="765" y1="474" x2="765" y2="500" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ Layer 4: Lib layer ============ -->
+  <g>
+    <rect x="40" y="502" width="960" height="118" rx="14" fill="#fff" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <text x="60" y="524" font-size="11" font-weight="700" fill="#64748b" letter-spacing="0.5">LIB LAYER  ·  src/lib/*</text>
+
+    <rect x="60" y="536" width="148" height="72" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="134" y="558" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">qr.ts</text>
+    <text x="134" y="575" text-anchor="middle" font-size="9.5" fill="#64748b">generateQR</text>
+    <text x="134" y="588" text-anchor="middle" font-size="9.5" fill="#64748b">generateStylizedQR</text>
+    <text x="134" y="601" text-anchor="middle" font-size="9" fill="#0ea5e9">pkg: qrcode</text>
+
+    <rect x="220" y="536" width="148" height="72" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="294" y="558" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">decode.ts</text>
+    <text x="294" y="575" text-anchor="middle" font-size="9.5" fill="#64748b">jsQR on ImageData</text>
+    <text x="294" y="588" text-anchor="middle" font-size="9.5" fill="#64748b">attemptBoth invert</text>
+    <text x="294" y="601" text-anchor="middle" font-size="9" fill="#0ea5e9">pkg: jsqr</text>
+
+    <rect x="380" y="536" width="148" height="72" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="454" y="558" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">camera.ts</text>
+    <text x="454" y="575" text-anchor="middle" font-size="9.5" fill="#64748b">useCameraScanner</text>
+    <text x="454" y="588" text-anchor="middle" font-size="9.5" fill="#64748b">getUserMedia + rAF</text>
+    <text x="454" y="601" text-anchor="middle" font-size="9" fill="#0ea5e9">Web API</text>
+
+    <rect x="540" y="536" width="148" height="72" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="614" y="558" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">payload.ts</text>
+    <text x="614" y="575" text-anchor="middle" font-size="9.5" fill="#64748b">8 type builders</text>
+    <text x="614" y="588" text-anchor="middle" font-size="9.5" fill="#64748b">wifi/vcard/… escape</text>
+    <text x="614" y="601" text-anchor="middle" font-size="9" fill="#0ea5e9">pure fn</text>
+
+    <rect x="700" y="536" width="148" height="72" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="774" y="558" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">excel.ts · zip.ts</text>
+    <text x="774" y="575" text-anchor="middle" font-size="9.5" fill="#64748b">XLSX read/write</text>
+    <text x="774" y="588" text-anchor="middle" font-size="9.5" fill="#64748b">ZIP pack · downloads</text>
+    <text x="774" y="601" text-anchor="middle" font-size="9" fill="#0ea5e9">xlsx · jszip</text>
+
+    <rect x="860" y="536" width="120" height="72" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+    <text x="920" y="558" text-anchor="middle" font-size="12" font-weight="600" fill="#0f172a">history.ts</text>
+    <text x="920" y="575" text-anchor="middle" font-size="9.5" fill="#64748b">cap 50 · dedupe</text>
+    <text x="920" y="588" text-anchor="middle" font-size="9.5" fill="#64748b">CSV/JSON export</text>
+    <text x="920" y="601" text-anchor="middle" font-size="9" fill="#0ea5e9">localStorage</text>
+  </g>
+
+  <!-- ============ Persistence ============ -->
+  <g>
+    <rect x="160" y="650" width="280" height="42" rx="10" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.2"/>
+    <text x="300" y="676" text-anchor="middle" font-size="12.5" font-weight="600" fill="#334155">💾 localStorage</text>
+    <text x="300" y="690" text-anchor="middle" font-size="9.5" fill="#64748b">lang · theme · history[]</text>
+  </g>
+  <line x1="300" y1="620" x2="300" y2="648" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+
+  <!-- ============ Deploy ============ -->
+  <g>
+    <rect x="600" y="650" width="280" height="42" rx="10" fill="#dbeafe" stroke="#0ea5e9" stroke-width="1.2"/>
+    <text x="740" y="676" text-anchor="middle" font-size="12.5" font-weight="600" fill="#0c4a6e">🚀 GitHub Pages</text>
+    <text x="740" y="690" text-anchor="middle" font-size="9.5" fill="#075985">static dist/ · CI builds on push</text>
+  </g>
+  <line x1="740" y1="620" x2="740" y2="648" stroke="#0ea5e9" stroke-width="1.5" marker-end="url(#arrowAccent)"/>
+
+  <!-- Legend -->
+  <g>
+    <rect x="40" y="708" width="960" height="36" rx="8" fill="#fff" stroke="#e2e8f0" stroke-width="1"/>
+    <rect x="56" y="719" width="14" height="14" rx="3" fill="url(#genGrad)" stroke="#0284c7" stroke-width="1"/>
+    <text x="78" y="730" font-size="10.5" fill="#475569">generate</text>
+    <rect x="140" y="719" width="14" height="14" rx="3" fill="url(#decGrad)" stroke="#15803d" stroke-width="1"/>
+    <text x="162" y="730" font-size="10.5" fill="#475569">decode</text>
+    <rect x="224" y="719" width="14" height="14" rx="3" fill="url(#hubGrad)" stroke="#f59e0b" stroke-width="1"/>
+    <text x="246" y="730" font-size="10.5" fill="#475569">shell/UX</text>
+    <line x1="312" y1="726" x2="346" y2="726" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <text x="354" y="730" font-size="10.5" fill="#475569">data flow</text>
+    <line x1="424" y1="726" x2="458" y2="726" stroke="#0ea5e9" stroke-width="1.5" marker-end="url(#arrowAccent)"/>
+    <text x="466" y="730" font-size="10.5" fill="#475569">deploy</text>
+    <text x="980" y="730" text-anchor="end" font-size="9.5" fill="#94a3b8" font-style="italic">100% client-side — no data leaves the browser</text>
+  </g>
+</svg>
