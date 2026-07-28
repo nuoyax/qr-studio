@@ -46,10 +46,16 @@ jobs:
             echo "name=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Read package name
+        id: pkg
+        run: echo "name=$(node -p "require('./package.json').name")" >> "$GITHUB_OUTPUT"
+
       - name: Package dist into zip
+        env:
+          PKG_NAME: ${{ steps.pkg.outputs.name }}
         run: |
           mkdir -p release
-          zip -r "release/qr-studio-${{ steps.tag.outputs.name }}.zip" dist \
+          zip -r "release/${PKG_NAME}-${{ steps.tag.outputs.name }}.zip" dist \
             -x "*.DS_Store"
 
       - name: Generate SHA256 checksum
@@ -63,11 +69,11 @@ jobs:
         run: |
           {
             echo "body<<EOF"
-            echo "## QR Code Tools \`${{ steps.tag.outputs.name }}\`"
+            echo "## ${{ steps.pkg.outputs.name }} ${{ steps.tag.outputs.name }}"
             echo ""
             echo "### Artifacts"
             echo ""
-            echo "- \`qr-studio-${{ steps.tag.outputs.name }}.zip\` — production build (\`dist/\`), ready to deploy to any static host."
+            echo "- \`${{ steps.pkg.outputs.name }}-${{ steps.tag.outputs.name }}.zip\` — production build (\`dist/\`), ready to deploy to any static host."
             echo "- \`checksums-sha256.txt\` — SHA256 checksums for the zip."
             echo ""
             echo "### Deploy"
@@ -87,11 +93,11 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.tag.outputs.name }}
-          name: ${{ steps.tag.outputs.name }}
+          name: ${{ steps.pkg.outputs.name }} ${{ steps.tag.outputs.name }}
           body: ${{ steps.notes.outputs.body }}
           draft: false
           prerelease: ${{ contains(steps.tag.outputs.name, '-') }}
           files: |
-            release/qr-studio-*.zip
+            release/${{ steps.pkg.outputs.name }}-*.zip
             release/checksums-sha256.txt
             dist
