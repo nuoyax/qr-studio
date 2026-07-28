@@ -60,7 +60,6 @@
 | 二维码解码   | `jsqr`                                    |
 | 表格处理     | `xlsx`（SheetJS）                         |
 | ZIP 打包     | `jszip`                                   |
-| 部署         | GitHub Pages（静态 `dist/`）              |
 
 ---
 
@@ -115,28 +114,6 @@ qr-studio/
         ├── excel.ts          # 读写 XLSX、TXT/CSV
         ├── zip.ts            # ZIP 打包 + Blob 下载
         └── i18n.ts           # 英文 / 中文 字典
-```
-
----
-
-## 部署到 GitHub Pages
-
-本仓库内置 GitHub Actions 工作流（`.github/workflows/deploy.yml`），会自动构建并发布站点。
-
-### 方式一：自动部署（推荐）
-
-1. 将仓库推送到 GitHub。
-2. 进入 **Settings → Pages → Build and deployment → Source = GitHub Actions**。
-3. 推送到 `main`（或手动触发工作流）。站点将发布在：
-   `https://<你的用户名>.github.io/qr-studio/`
-
-Vite 配置使用 `base: "./"`，构建产物可在任意项目子路径下工作。
-
-### 方式二：手动部署
-
-```bash
-npm run build
-# 将 dist/ 内容上传到你的静态托管（Pages / Netlify / Vercel 等）
 ```
 
 ---

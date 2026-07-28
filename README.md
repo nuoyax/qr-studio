@@ -60,7 +60,6 @@
 | QR decode    | `jsqr`                                   |
 | Spreadsheet  | `xlsx` (SheetJS)                         |
 | ZIP archive  | `jszip`                                  |
-| Deploy       | GitHub Pages (static `dist/`)            |
 
 ---
 
@@ -120,28 +119,6 @@ qr-studio/
         ├── history.ts        # local history store + CSV/JSON export
         ├── theme.ts          # light/dark theme persistence
         └── i18n.ts           # EN / ZH dictionaries
-```
-
----
-
-## Deploy to GitHub Pages
-
-This repo includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds and publishes the site automatically.
-
-### Option A — automatic (recommended)
-
-1. Push the repo to GitHub.
-2. Go to **Settings → Pages → Build and deployment → Source = GitHub Actions**.
-3. Push to `main` (or trigger the workflow manually). The site is published at:
-   `https://<your-username>.github.io/qr-studio/`
-
-The Vite config uses `base: "./"` so the built assets work under any project subpath.
-
-### Option B — manual
-
-```bash
-npm run build
-# upload the contents of dist/ to your static host (Pages, Netlify, Vercel, ...)
 ```
 
 ---
