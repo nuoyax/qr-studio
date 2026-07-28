@@ -1,0 +1,12 @@
+# Build output
+dist/
+dist-ssr/
+
+# Dependencies
+node_modules/
+
+# AI OS local state — never commit
+.claude/
+CLAUDE.md
+.mcp.json
+.claudeignore

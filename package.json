@@ -1,0 +1,32 @@
+{
+  "name": "qrcode-tools",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "QR code generator & decoder — batch generate, batch decode (incl. paste image), export to XLSX. React + TypeScript + Vite.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "jsqr": "^1.4.0",
+    "jszip": "^3.10.1",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.5",
+    "vitest": "^4.1.10"
+  }
+}

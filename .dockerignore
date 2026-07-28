@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+
+# AI OS local state
+.claude/
+CLAUDE.md
+.mcp.json
+.claudeignore
