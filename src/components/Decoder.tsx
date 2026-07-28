@@ -4,6 +4,8 @@ import type { Lang } from "../lib/i18n";
 import { decodeFromFile } from "../lib/decode";
 import { writeXlsx } from "../lib/excel";
 import { triggerBlobDownload } from "../lib/zip";
+import { useCameraScanner } from "../lib/camera";
+import type { HistoryItem } from "../lib/history";
 
 interface DecodedRow {
   id: number;
@@ -20,9 +22,12 @@ const nextId = (() => {
 
 interface Props {
   lang: Lang;
+  onDecoded?: (text: string) => void;
+  restore?: HistoryItem | null;
+  restoreNonce?: number;
 }
 
-export function Decoder({ lang }: Props) {
+export function Decoder({ lang, onDecoded, restore, restoreNonce }: Props) {
   const t = dictionaries[lang];
 
   // --- single ---
@@ -42,6 +47,7 @@ export function Decoder({ lang }: Props) {
     const thumbUrl = URL.createObjectURL(file);
     try {
       const value = await decodeFromFile(file);
+      if (value) onDecoded?.(value);
       return {
         id: nextId(),
         fileName: file.name,
@@ -58,7 +64,7 @@ export function Decoder({ lang }: Props) {
         thumbUrl,
       } as DecodedRow;
     }
-  }, [t.noQrFound]);
+  }, [t.noQrFound, onDecoded]);
 
   const runSingle = useCallback(
     async (file: File) => {
@@ -73,6 +79,7 @@ export function Decoder({ lang }: Props) {
           setSingleError(t.noQrFound);
         } else {
           setSingleResult(value);
+          onDecoded?.(value);
         }
       } catch (e) {
         setSingleError(e instanceof Error ? e.message : String(e));
@@ -80,7 +87,7 @@ export function Decoder({ lang }: Props) {
         setSingleBusy(false);
       }
     },
-    [t.noQrFound],
+    [t.noQrFound, onDecoded],
   );
 
   const handleSinglePick = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -184,6 +191,35 @@ export function Decoder({ lang }: Props) {
     };
   }, [singleThumb]);
 
+  // --- camera scanner: feed decoded text into the single result ---
+  const onCameraDecode = useCallback((text: string) => {
+    setSingleResult(text);
+    setSingleError(null);
+    setSingleFile(null);
+    setSingleThumb(null);
+    onDecoded?.(text);
+  }, [onDecoded]);
+  const cam = useCameraScanner(onCameraDecode);
+
+  // Restore a decoded item from history → populate single result.
+  useEffect(() => {
+    if (!restore || restoreNonce === 0) return;
+    if (restore.kind !== "dec") return;
+    setSingleResult(restore.text);
+    setSingleError(null);
+    setSingleFile(null);
+    setSingleThumb(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [restoreNonce]);
+
+  const camErrorText = (() => {
+    if (!cam.state.error) return null;
+    if (cam.state.error === "unsupported") return t.cameraUnsupported;
+    if (cam.state.error === "denied" || cam.state.error === "notfound")
+      return t.cameraDenied;
+    return cam.state.error;
+  })();
+
   return (
     <div className="panel">
       <div className="panel-intro">
@@ -241,6 +277,41 @@ export function Decoder({ lang }: Props) {
         {singleFile && (
           <div className="muted small">{t.fileName}: {singleFile.name}</div>
         )}
+      </section>
+
+      <section className="card">
+        <h3>{t.cameraScan}</h3>
+        <div className="row">
+          {!cam.state.active ? (
+            <button className="btn primary" onClick={() => cam.start()}>
+              {t.startCamera}
+            </button>
+          ) : (
+            <button className="btn danger" onClick={cam.stop}>
+              {t.stopCamera}
+            </button>
+          )}
+          {cam.state.active && cam.state.devices.length > 1 && (
+            <button className="btn ghost" onClick={cam.switchCamera}>
+              {t.switchCamera}
+            </button>
+          )}
+        </div>
+        {camErrorText && <div className="error">{camErrorText}</div>}
+        <div className="camera-area">
+          <video
+            ref={cam.videoRef}
+            className={`camera-video ${cam.state.active ? "" : "hidden"}`}
+            playsInline
+            muted
+          />
+          {!cam.state.active && (
+            <div className="placeholder">
+              {camErrorText ?? t.scanning}
+            </div>
+          )}
+          {cam.state.active && <div className="muted small scan-hint">{t.scanning}</div>}
+        </div>
       </section>
 
       <section className="card">

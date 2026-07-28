@@ -11,15 +11,18 @@
 ### Generate
 
 - **Single QR** — encode any text or URL into a QR code with live preview.
+- **Structured templates** — generate URL, Wi-Fi, vCard (contact), SMS, email, phone, and geolocation QR codes from form fields instead of raw text.
+- **Stylized QR** — choose square / rounded / dot module shapes, recolor the finder (eye) patterns, and **embed a centered logo** (error correction auto-raised to H to compensate).
 - **Batch generate** — paste multiple rows, or import from **XLSX / TXT / CSV**, and generate all at once.
 - **Customizable** — size, error-correction level (L/M/Q/H), margin, foreground & background colors.
 - **Export** — download each PNG individually, **download all as a ZIP**, or **export the content list to XLSX**.
-- **SVG export** for the single QR (vector, scalable).
+- **SVG export** for the single plain-text QR (vector, scalable).
 
 ### Decode
 
 - **Single image** — pick an image file and read the QR code inside.
 - **Paste image** — copy a screenshot or image and press **Ctrl+V** anywhere on the Decode tab to decode it instantly.
+- **Camera scan** — scan a QR code live with your device camera (front/back switching on multi-camera devices); stops automatically on first hit.
 - **Batch decode** — drag & drop or select multiple images at once; results are listed in a table.
 - **Export** — copy any decoded value to the clipboard, or **export all results to XLSX** (file name, decoded text, status).
 
@@ -27,6 +30,8 @@
 
 - 🔒 **100% client-side** — all processing runs in your browser. No data is uploaded to any server.
 - 🌐 **Bilingual UI** — English (default) and 简体中文, with your choice remembered.
+- 🌙 **Dark mode** — auto-detects OS preference on first visit, toggle persists.
+- 🕘 **History** — recent generated & decoded items are stored locally; restore, clear, or export as **CSV / JSON**.
 - 📱 **Responsive** layout that works on desktop and mobile.
 - ⚡ Built with **React 18 + TypeScript + Vite 6**, using [`qrcode`](https://www.npmjs.com/package/qrcode), [`jsqr`](https://www.npmjs.com/package/jsqr), [`xlsx`](https://www.npmjs.com/package/xlsx) (SheetJS), and [`jszip`](https://www.npmjs.com/package/jszip).
 
@@ -86,17 +91,22 @@ qrcode-tools/
 │   └── qr.svg
 └── src/
     ├── main.tsx              # entry
-    ├── App.tsx               # shell: tabs, header, i18n toggle
-    ├── styles.css            # UI styles
+    ├── App.tsx               # shell: tabs, header, theme/lang toggle, history
+    ├── styles.css            # UI styles (light + dark via [data-theme])
     ├── components/
-    │   ├── Generator.tsx     # generate (single + batch)
-    │   └── Decoder.tsx      # decode (single + batch + paste)
+    │   ├── Generator.tsx     # generate (templates + styling + batch)
+    │   ├── Decoder.tsx       # decode (single + batch + paste + camera)
+    │   └── HistoryPanel.tsx  # recent items, CSV/JSON export, restore
     └── lib/
-        ├── qr.ts             # generate QR data URL
+        ├── qr.ts             # generate QR data URL + stylized canvas
         ├── svg.ts            # generate QR SVG string
         ├── decode.ts         # decode QR from image / ImageData
+        ├── camera.ts         # getUserMedia continuous scanner
+        ├── payload.ts        # structured content builders (wifi/vcard/…)
         ├── excel.ts          # read/write XLSX, TXT/CSV
         ├── zip.ts            # zip packaging + blob downloads
+        ├── history.ts        # local history store + CSV/JSON export
+        ├── theme.ts          # light/dark theme persistence
         └── i18n.ts           # EN / ZH dictionaries
 ```
 

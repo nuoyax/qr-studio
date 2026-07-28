@@ -53,6 +53,24 @@ export interface Dict {
   statusDone: string;
   statusError: string;
 
+  // Content type templates
+  contentType: string;
+  modeSimple: string;
+  modeTemplate: string;
+
+  // Stylized QR
+  styleSection: string;
+  embedLogo: string;
+  uploadLogo: string;
+  removeLogo: string;
+  logoSize: string;
+  dotStyle: string;
+  eyeColor: string;
+  dotSquare: string;
+  dotRounded: string;
+  dotDot: string;
+  autoEcHint: string;
+
   // Decode
   decSubtitle: string;
   singleDec: string;
@@ -66,6 +84,27 @@ export interface Dict {
   decodedValue: string;
   noQrFound: string;
   colDecoded: string;
+
+  // Camera
+  cameraScan: string;
+  startCamera: string;
+  stopCamera: string;
+  switchCamera: string;
+  cameraDenied: string;
+  cameraUnsupported: string;
+  scanning: string;
+
+  // Theme + history
+  darkMode: string;
+  lightMode: string;
+  history: string;
+  historyEmpty: string;
+  clearHistory: string;
+  exportCsv: string;
+  exportJson: string;
+  restore: string;
+  historyGen: string;
+  historyDec: string;
 
   // Footer
   footer: string;
@@ -128,6 +167,22 @@ const en: Dict = {
   statusDone: "Done",
   statusError: "Error",
 
+  contentType: "Content type",
+  modeSimple: "Simple",
+  modeTemplate: "Template",
+
+  styleSection: "Style & logo",
+  embedLogo: "Embed logo",
+  uploadLogo: "Upload logo",
+  removeLogo: "Remove logo",
+  logoSize: "Logo size",
+  dotStyle: "Dot style",
+  eyeColor: "Finder color",
+  dotSquare: "Square",
+  dotRounded: "Rounded",
+  dotDot: "Dots",
+  autoEcHint: "Error correction auto-raised to H when a logo is embedded.",
+
   decSubtitle: "Read QR codes from images.",
   singleDec: "Single image",
   batchDec: "Batch decode",
@@ -140,6 +195,25 @@ const en: Dict = {
   decodedValue: "Decoded value",
   noQrFound: "No QR code found.",
   colDecoded: "Decoded",
+
+  cameraScan: "Camera scan",
+  startCamera: "Start camera",
+  stopCamera: "Stop",
+  switchCamera: "Switch camera",
+  cameraDenied: "Camera access denied or unavailable.",
+  cameraUnsupported: "Camera is not supported in this browser.",
+  scanning: "Scanning… point at a QR code",
+
+  darkMode: "Dark mode",
+  lightMode: "Light mode",
+  history: "Recent history",
+  historyEmpty: "No history yet.",
+  clearHistory: "Clear history",
+  exportCsv: "Export CSV",
+  exportJson: "Export JSON",
+  restore: "Restore",
+  historyGen: "Generated",
+  historyDec: "Decoded",
 
   footer: "Runs entirely in your browser. No data leaves your device.",
   github: "GitHub",
@@ -200,6 +274,22 @@ const zh: Dict = {
   statusDone: "完成",
   statusError: "失败",
 
+  contentType: "内容类型",
+  modeSimple: "简洁",
+  modeTemplate: "模板",
+
+  styleSection: "样式与 Logo",
+  embedLogo: "嵌入 Logo",
+  uploadLogo: "上传 Logo",
+  removeLogo: "移除 Logo",
+  logoSize: "Logo 大小",
+  dotStyle: "码点样式",
+  eyeColor: "定位点颜色",
+  dotSquare: "方块",
+  dotRounded: "圆角",
+  dotDot: "圆点",
+  autoEcHint: "嵌入 Logo 时纠错等级将自动提升至 H。",
+
   decSubtitle: "从图片中识别二维码。",
   singleDec: "单张图片",
   batchDec: "批量解码",
@@ -212,6 +302,25 @@ const zh: Dict = {
   decodedValue: "解码结果",
   noQrFound: "未找到二维码。",
   colDecoded: "解码内容",
+
+  cameraScan: "摄像头扫码",
+  startCamera: "开启摄像头",
+  stopCamera: "停止",
+  switchCamera: "切换摄像头",
+  cameraDenied: "摄像头访问被拒绝或不可用。",
+  cameraUnsupported: "当前浏览器不支持摄像头。",
+  scanning: "扫描中…请将二维码对准摄像头",
+
+  darkMode: "深色模式",
+  lightMode: "浅色模式",
+  history: "最近记录",
+  historyEmpty: "暂无记录。",
+  clearHistory: "清除记录",
+  exportCsv: "导出 CSV",
+  exportJson: "导出 JSON",
+  restore: "恢复",
+  historyGen: "已生成",
+  historyDec: "已解码",
 
   footer: "完全在浏览器本地运行，数据不会离开你的设备。",
   github: "GitHub",

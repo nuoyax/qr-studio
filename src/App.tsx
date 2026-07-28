@@ -1,30 +1,59 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Generator } from "./components/Generator";
 import { Decoder } from "./components/Decoder";
+import { HistoryPanel } from "./components/HistoryPanel";
 import { dictionaries } from "./lib/i18n";
 import type { Lang } from "./lib/i18n";
+import {
+  applyTheme,
+  getStoredTheme,
+  toggleTheme,
+} from "./lib/theme";
+import type { Theme } from "./lib/theme";
+import { addHistory } from "./lib/history";
+import type { HistoryItem } from "./lib/history";
 
 type Tab = "generate" | "decode";
 
-const STORAGE_KEY = "qrcode-tools.lang";
+const LANG_KEY = "qrcode-tools.lang";
 
 export default function App() {
   const [tab, setTab] = useState<Tab>("generate");
   const [lang, setLang] = useState<Lang>("en");
+  const [theme, setTheme] = useState<Theme>("light");
+  /** Bump to force Generator/Decoder to re-read restore target. */
+  const [restoreNonce, setRestoreNonce] = useState(0);
+  const [restoreTarget, setRestoreTarget] = useState<HistoryItem | null>(null);
 
+  // bootstrap persisted prefs
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY) as Lang | null;
-    if (saved === "en" || saved === "zh") setLang(saved);
+    const savedLang = localStorage.getItem(LANG_KEY) as Lang | null;
+    if (savedLang === "en" || savedLang === "zh") setLang(savedLang);
+    const th = getStoredTheme();
+    setTheme(th);
+    applyTheme(th);
   }, []);
 
   const toggleLang = () => {
-    const next = lang === "en" ? "zh" : "en";
+    const next: Lang = lang === "en" ? "zh" : "en";
     setLang(next);
-    localStorage.setItem(STORAGE_KEY, next);
+    localStorage.setItem(LANG_KEY, next);
     document.documentElement.lang = next === "zh" ? "zh-CN" : "en";
   };
 
+  const onToggleTheme = () => setTheme((th) => toggleTheme(th));
+
   const t = dictionaries[lang];
+
+  // Record generation/decoding into history. Components call this via props.
+  const recordGen = useCallback((text: string) => addHistory("gen", text), []);
+  const recordDec = useCallback((text: string) => addHistory("dec", text), []);
+
+  const onRestore = useCallback((item: HistoryItem) => {
+    setRestoreTarget(item);
+    setRestoreNonce((n) => n + 1);
+    setTab(item.kind === "gen" ? "generate" : "decode");
+  }, []);
 
   return (
     <div className="app">
@@ -37,6 +66,14 @@ export default function App() {
           </div>
         </div>
         <div className="header-actions">
+          <button
+            className="btn ghost theme-btn"
+            onClick={onToggleTheme}
+            title={theme === "dark" ? t.lightMode : t.darkMode}
+            aria-label={theme === "dark" ? t.lightMode : t.darkMode}
+          >
+            {theme === "dark" ? "☀" : "☾"}
+          </button>
           <button className="btn ghost lang-btn" onClick={toggleLang}>
             {t.langLabel}
           </button>
@@ -67,7 +104,22 @@ export default function App() {
       </nav>
 
       <main className="content">
-        {tab === "generate" ? <Generator lang={lang} /> : <Decoder lang={lang} />}
+        {tab === "generate" ? (
+          <Generator
+            lang={lang}
+            onGenerated={recordGen}
+            restore={restoreTarget}
+            restoreNonce={restoreNonce}
+          />
+        ) : (
+          <Decoder
+            lang={lang}
+            onDecoded={recordDec}
+            restore={restoreTarget}
+            restoreNonce={restoreNonce}
+          />
+        )}
+        <HistoryPanel lang={lang} onRestore={onRestore} />
       </main>
 
       <footer className="footer">
