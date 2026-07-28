@@ -3,11 +3,75 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./qr.svg" />
+
+    <!-- Primary meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="description" content="QR code generator & decoder — batch generate, batch decode (incl. paste image), export to XLSX." />
+    <title>QR Studio — Free Online QR Code Generator & Decoder</title>
+    <meta
+      name="description"
+      content="QR Studio — a free, 100% client-side QR code generator & decoder. Batch generate from XLSX/CSV, paste-image decode, camera scan, Wi-Fi/vCard templates, stylized QR with logo, SVG export. No data leaves your browser."
+    />
+    <meta
+      name="keywords"
+      content="QR code generator, QR code decoder, batch QR, QR code scanner, Wi-Fi QR, vCard QR, QR with logo, QR code SVG, online QR tool, 二维码生成器, 二维码识别"
+    />
+    <meta name="author" content="nuoyax" />
+    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0ea5e9" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
-    <title>QR Code Tools</title>
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nuoyax.github.io/qr-studio/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="QR Studio" />
+    <meta property="og:title" content="QR Studio — Free Online QR Code Generator & Decoder" />
+    <meta
+      property="og:description"
+      content="100% client-side QR code generator & decoder. Batch generate, paste-image decode, camera scan, Wi-Fi/vCard templates, stylized QR with logo. No data leaves your browser."
+    />
+    <meta property="og:url" content="https://nuoyax.github.io/qr-studio/" />
+    <meta property="og:image" content="https://nuoyax.github.io/qr-studio/og.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="zh_CN" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="QR Studio — Free Online QR Code Generator & Decoder" />
+    <meta
+      name="twitter:description"
+      content="100% client-side QR code generator & decoder. Batch generate, paste-image decode, camera scan, Wi-Fi/vCard templates, stylized QR with logo."
+    />
+    <meta name="twitter:image" content="https://nuoyax.github.io/qr-studio/og.png" />
+
+    <!-- Structured data: WebApplication -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "QR Studio",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any (browser)",
+        "url": "https://nuoyax.github.io/qr-studio/",
+        "description": "A free, 100% client-side QR code generator & decoder with batch processing, paste-image decode, camera scan, structured templates, stylized QR with logo, and SVG export.",
+        "browserRequirements": "Requires a modern browser with JavaScript enabled.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "featureList": [
+          "Single & batch QR generation",
+          "Batch decode from multiple images",
+          "Paste-image decode (Ctrl+V)",
+          "Camera live scan",
+          "Structured templates (Wi-Fi, vCard, SMS, email, phone, geolocation)",
+          "Stylized QR with module shapes, finder colors, and logo embedding",
+          "SVG export",
+          "XLSX / CSV import & export",
+          "Dark mode & bilingual UI (EN/中文)",
+          "100% client-side — no data upload"
+        ],
+        "inLanguage": ["en", "zh"]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
